@@ -104,7 +104,7 @@ var iScrollRefresh = function(tab_id,bd_id,parames){
 			pullUpLoading[i] = false;
 		}
 
-		bdScroll = new IScroll(_this.bdWrapper, { scrollX: true, scrollY:false, momentum: false, snap:true, tap: 'itemTap' });
+		bdScroll = new IScroll(_this.bdWrapper, { scrollX: true, scrollY:false, momentum: false, snap:true });
 
 		bdScroll.on('scrollEnd',bdEndHandler);
 

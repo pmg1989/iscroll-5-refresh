@@ -88,18 +88,18 @@ function initData(index,page){
 }
 
 function testClick(id) {
-	// console.log(id);
+	//alert(id);
 	// event.preventDefault()
 }
 
-$("#ir-bd-wrapper .ir-scroller").on('itemTap',function(e){
-	var id = $(e.target).parents('li').data('id');
+$(document).on('tap',"#ir-bd-wrapper .ir-scroller li", function(e){
+	var id = $(this).data('id');
 	alert(id);
 	location.href = "detail.html?id=" + id
 })
 
 function parseHtml(art){
-	var html = '<li data-id="' + art.id + '"><a onclick="testClick(' + art.id + ')" class="clear-fix" href="/articles/show/'+art.id+'"><img src="'+art.thumbnail+'"><div class="li-body"><h3>'+art.title+'</h3><p>'+art.created_at+'</p></div></a></li>';
+	var html = '<li data-id="' + art.id + '"><a class="clear-fix" href="javascript:void(0)"><img src="'+art.thumbnail+'"><div class="li-body"><h3>'+art.title+'</h3><p>'+art.created_at+'</p></div></a></li>';
 	if(!art.thumbnail){
 	html = '<li><a href="/articles/show/'+art.id+'"><div class="li-body" style="width:100%"><h3>'+art.title+'</h3><p>'+art.created_at+'</p></div></a></li>';
 	}
