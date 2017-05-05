@@ -94,7 +94,7 @@ function testClick(id) {
 
 $(document).on('tap',"#ir-bd-wrapper .ir-scroller li", function(e){
 	var id = $(this).data('id');
-	alert(id);
+	//alert(id);
 	location.href = "detail.html?id=" + id
 })
 
