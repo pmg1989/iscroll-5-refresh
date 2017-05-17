@@ -76,7 +76,7 @@ function initData(index,page){
 
 		}
 
-		$('.ir-scroller').eq(index).find('.loader').remove();
+		$('.ir-scroller').eq(index).find('.loader').parent().remove();
 
 		ir.setPage(index,1);  //设置当前页面的页数
 		ir.refresh(index); //刷新Iscroll
@@ -142,10 +142,6 @@ $('#viewport').on('touchend',function(){
 */
 
 function loaded () {
-
-	$('.ir-scroller').each(function(index, el) {
-		$(this).append('<div class="loader"><div class="line-scale"><div></div><div></div><div></div><div></div><div></div></div><div style="margin-top:15px">加载中...</div></div>');
-	});
 	ir = new iScrollRefresh('#ir-tabs-wrapper','#ir-bd-wrapper');
 
 	//ir = IR(['选项卡1','选项卡2','选项卡3','选项卡4','选项卡5','选项卡6','选项卡7','选项卡8'],4)
