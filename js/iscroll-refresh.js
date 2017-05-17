@@ -52,7 +52,8 @@ var iScrollRefresh = function(tab_id,bd_id,parames){
 	var bdMoving = false;  //是否在横向滚动
 	var scrollMoving = false; //是否在上下滚动
 	var scrollStartY,scrollStartX,scrollStartTime,noMore,lastUpdate,allowPullDown,allowPullUp,loadedAll;
-	var downTipClassName = 'ir-down-tip',upTipClassName = 'ir-up-tip'
+	var downTipClassName = 'ir-down-tip',upTipClassName = 'ir-up-tip';
+	var setTopTime = 50;
 
 	function createScroll(){
 
@@ -482,14 +483,14 @@ var iScrollRefresh = function(tab_id,bd_id,parames){
 			setTimeout(function(){
 				setTop(scroll,0);
 				scroll.refresh();
-			},1000);
+			},setTopTime);
 		}else{
 			setTimeout(function(){
 				setPullDownTip(scroll,config.pullDown.contentDown);
 				setRotate(scroll,0);
 				setTop(scroll,0);
 				scroll.refresh();
-			},1000);
+			},setTopTime);
 		}
 		var now = (new Date()).getTime();
 		scroll.scroller.setAttribute('lastupdate',now);
@@ -517,7 +518,7 @@ var iScrollRefresh = function(tab_id,bd_id,parames){
 				setTop(scroll,0);
 				setUpRotate(scroll,0);
 				scroll.refresh();
-			},1000);
+			},setTopTime);
 		}else{
 			setTimeout(function(){
 				setPullUpTip(scroll,config.pullUp.contentUp);
@@ -525,7 +526,7 @@ var iScrollRefresh = function(tab_id,bd_id,parames){
 				setTop(scroll,0);
 				setUpRotate(scroll,0);
 				scroll.refresh();
-			},1000);
+			},setTopTime);
 		}
 
 
