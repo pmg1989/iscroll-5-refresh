@@ -36,7 +36,6 @@ var vm = new Vue({
 					})
 			  } else {
 					Vue.nextTick(function(){
-						ir.setPage(index,0);  //设置当前页面的页数
 						ir.pullUpCallBack(param,1); //没有更多数据的时候后面多加个1就行
 					})
 				}
