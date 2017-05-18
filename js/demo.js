@@ -1,9 +1,9 @@
-var categorys = [17,18,19]; //每个类别的ID号
 var ir;
 
 var vm = new Vue({
 	el: '#app',
 	data: {
+		categorys: [1, 2, 3], //每个类别的ID号
 		list1: [],
 		list2: [],
 		list3: [],
@@ -15,6 +15,19 @@ var vm = new Vue({
 			ir.upAction = this.pullUp; //上拉加载取数据函数
 			ir.slideAction = this.slide; //左右滑动的回调函数
 			this.slide(0);
+		},
+		initData: function(index, page) {
+			getData({ tab: index, page: page, cid: this.categorys[index], type: 'init' }, function (data) {
+				if(parseInt(data.code) == 200){
+					//vm.list1 = data.list
+					vm.setInitList(index, data.list)
+					$('.ir-scroller').eq(index).find('.loader').parent('li').remove();
+				  Vue.nextTick(function(){
+						ir.setPage(index,1);  //设置当前页面的页数
+					  ir.refresh(index); //刷新Iscroll
+					})
+			  }
+			});
 		},
 		slide: function(index) {
 			if($('.ir-scroller').eq(index).find('.loader').length >0){
@@ -28,15 +41,17 @@ var vm = new Vue({
 			param.lastUpdate 上一次刷新的时间
 			*/
 			var index = param.index;
-			getData({ curTab: index, curPage: 0, type: 'pullDown' }, function (data) {
+			getData({ tab: index, page: 0, cid: this.categorys[index], type: 'pullDown' }, function (data) {
 				if(parseInt(data.code) == 200) {
 					vm.setInitList(index, data.list);
 				  Vue.nextTick(function(){
-						ir.pullUpCallBack(param); //还有数据的时候用这个
+						ir.setPage(index,1);  //设置当前页面的页数
+						ir.pullDownCallBack(param); //还有数据的时候用这个
 					})
 			  } else {
 					Vue.nextTick(function(){
-						ir.pullUpCallBack(param,1); //没有更多数据的时候后面多加个1就行
+						ir.setPage(index,1);  //设置当前页面的页数
+						ir.pullDownCallBack(param,1); //没有更多数据的时候后面多加个1就行
 					})
 				}
 			});
@@ -50,7 +65,7 @@ var vm = new Vue({
 			*/
 			var index = param.index;
 			var page = param.page;
-			getData({ curTab: index, curPage: page, type: 'pullUp' }, function (data) {
+			getData({ tab: index, page: page, cid: this.categorys[index], type: 'pullUp' }, function (data) {
 				if(parseInt(data.code) == 200) {
 					vm.setMoreList(index, data.list);
 				  Vue.nextTick(function(){
@@ -61,19 +76,6 @@ var vm = new Vue({
 						ir.pullUpCallBack(param,1); //没有更多数据的时候后面多加个1就行
 					})
 				}
-			});
-		},
-		initData: function(index, page) {
-			getData({ curTab: index, curPage: page, type: 'init' }, function (data) {
-				if(parseInt(data.code) == 200){
-					//vm.list1 = data.list
-					vm.setInitList(index, data.list)
-					$('.ir-scroller').eq(index).find('.loader').parent('li').remove();
-				  Vue.nextTick(function(){
-						ir.setPage(index,1);  //设置当前页面的页数
-					  ir.refresh(index); //刷新Iscroll
-					})
-			  }
 			});
 		},
 		setInitList: function(index, list) {
