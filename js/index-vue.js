@@ -5,6 +5,7 @@ var vm = new Vue({
 	data: {
 		categorys: [1, 2, 3, 4, 5, 6], //每个类别的ID号
 		loading: [true, true, true, true, true, true],
+		tab: +queryString('tab') || 0,
 		list1: [],
 		list2: [],
 		list3: [],
@@ -18,7 +19,7 @@ var vm = new Vue({
 			ir.downAction = this.pullDown; //下拉刷新取数据函数
 			ir.upAction = this.pullUp; //上拉加载取数据函数
 			ir.slideAction = this.slide; //左右滑动的回调函数
-			//this.slide(0);
+			this.slide(this.tab);
 		},
 		initData: function(index, page) {
 			getData({ tab: index, page: page, cid: this.categorys[index], type: 'init' }, function (data) {
