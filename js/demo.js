@@ -134,19 +134,14 @@ var vm = new Vue({
 				default:
 					break;
 			}
-		},
-		handleClick: function(item) {
-
 		}
-
 	},
 	mounted: function () {
 		this.loaded();
 
-		$("#ir-bd-wrapper").on('click',".ir-scroller li", function(e){
-			alert(1);
-			var id = $(this).data('id');
-			//alert(id);
+		$(document).on('tap',"#ir-bd-wrapper .ir-scroller li", function(e){
+			var id = $(this).attr('data-id');
+			alert(id);
 			//location.href = "detail.html?id=" + id
 		})
   }
