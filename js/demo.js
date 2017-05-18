@@ -4,6 +4,7 @@ var vm = new Vue({
 	el: '#app',
 	data: {
 		categorys: [1, 2, 3, 4, 5, 6], //每个类别的ID号
+		loading: [true, true, true, true, true, true],
 		list1: [],
 		list2: [],
 		list3: [],
@@ -17,14 +18,13 @@ var vm = new Vue({
 			ir.downAction = this.pullDown; //下拉刷新取数据函数
 			ir.upAction = this.pullUp; //上拉加载取数据函数
 			ir.slideAction = this.slide; //左右滑动的回调函数
-			this.slide(0);
+			//this.slide(0);
 		},
 		initData: function(index, page) {
 			getData({ tab: index, page: page, cid: this.categorys[index], type: 'init' }, function (data) {
 				if(parseInt(data.code) == 200){
 					//vm.list1 = data.list
 					vm.setInitList(index, data.list)
-					$('.ir-scroller').eq(index).find('.loader').parent('li').remove();
 				  Vue.nextTick(function(){
 						ir.setPage(index,1);  //设置当前页面的页数
 					  ir.refresh(index); //刷新Iscroll
@@ -33,7 +33,9 @@ var vm = new Vue({
 			});
 		},
 		slide: function(index) {
-			if($('.ir-scroller').eq(index).find('.loader').length >0){
+			if(this.loading[index]) {
+				this.loading[index] = false;
+				//this.loading.splice(index, 1, false)
 				this.initData(index,0);
 			}
 		},

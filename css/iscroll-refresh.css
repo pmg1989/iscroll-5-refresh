@@ -100,7 +100,7 @@ keyframes IRLoadingFrame{
     }
 }
 
-div.loader { height: 200px; padding-top: 100px; text-align: center; border-bottom: 0px; background-color: #fff;}
+div.loader { height: 100vh; padding-top: 50%; text-align: center; border-bottom: 0px; background-color: #fff;}
 
 @-webkit-keyframes line-scale {
   0% {-webkit-transform: scaley(1);transform: scaley(1); }
