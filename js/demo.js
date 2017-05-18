@@ -3,10 +3,13 @@ var ir;
 var vm = new Vue({
 	el: '#app',
 	data: {
-		categorys: [1, 2, 3], //每个类别的ID号
+		categorys: [1, 2, 3, 4, 5, 6], //每个类别的ID号
 		list1: [],
 		list2: [],
 		list3: [],
+		list4: [],
+		list5: [],
+		list6: []
 	},
 	methods: {
 		loaded: function() {
@@ -86,6 +89,12 @@ var vm = new Vue({
 					vm.list2 = list; break;
 				case 2:
 					vm.list3 = list; break;
+				case 3:
+					vm.list4 = list; break;
+				case 4:
+					vm.list5 = list; break;
+				case 5:
+					vm.list6 = list; break;
 				default:
 					break;
 			}
@@ -107,14 +116,38 @@ var vm = new Vue({
 						vm.list3.push(list[i])
 					}
 					break;
+				case 3:
+					for(var i= 0; i < list.length; i++) {
+						vm.list4.push(list[i])
+					}
+					break;
+				case 4:
+					for(var i= 0; i < list.length; i++) {
+						vm.list5.push(list[i])
+					}
+					break;
+				case 5:
+					for(var i= 0; i < list.length; i++) {
+						vm.list6.push(list[i])
+					}
+					break;
 				default:
 					break;
 			}
+		},
+		handleClick: function(item) {
+
 		}
+
 	},
-	created: function () {
-    setTimeout(function(){
-			vm.loaded();
-		},300)
+	mounted: function () {
+		this.loaded();
+
+		$("#ir-bd-wrapper").on('click',".ir-scroller li", function(e){
+			alert(1);
+			var id = $(this).data('id');
+			//alert(id);
+			//location.href = "detail.html?id=" + id
+		})
   }
 })

@@ -12,9 +12,12 @@
 <div id="app">
 	<div id="ir-tabs-wrapper">
 		<div class="ir-tabs-scroller">
-			<a class="active" href="#">行业资讯</a>
-			<a href="#">酒店资讯</a>
-			<a href="#">航空资讯</a>
+			<a class="active" href="javascript:;">行业资讯</a>
+			<a href="javascript:;">酒店资讯</a>
+			<a href="javascript:;">航空资讯</a>
+			<a href="javascript:;">人物访谈</a>
+			<a href="javascript:;">人物动态</a>
+			<a href="javascript:;">行业观点</a>
 		</div>
 	</div>
 	<div style="clear:both"></div>
@@ -22,8 +25,8 @@
 		<div class="ir-bd-scroller">
 			<div class="ir-wrapper">
 				<ul class="ir-scroller">
-					<li v-for="item in list1">
-						<a class="clear-fix" href="javascript:void(0)">
+					<li v-for="item in list1" :data-id="item.id">
+						<a class="clear-fix" href="javascript:;">
 							<img :src="item.thumbnail">
 							<div class="li-body">
 								<h3>{{ item.title }}</h3>
@@ -44,8 +47,8 @@
 			</div>
 			<div class="ir-wrapper">
 				<ul class="ir-scroller">
-					<li v-for="item in list2">
-						<a class="clear-fix" href="javascript:void(0)">
+					<li v-for="item in list2" :data-id="item.id">
+						<a class="clear-fix" href="javascript:;">
 							<img :src="item.thumbnail">
 							<div class="li-body">
 								<h3>{{ item.title }}</h3>
@@ -66,8 +69,74 @@
 			</div>
 			<div class="ir-wrapper">
 				<ul class="ir-scroller">
-					<li v-for="item in list3">
-						<a class="clear-fix" href="javascript:void(0)">
+					<li v-for="item in list3" :data-id="item.id">
+						<a class="clear-fix" href="javascript:;">
+							<img :src="item.thumbnail">
+							<div class="li-body">
+								<h3>{{ item.title }}</h3>
+								<p>{{ item.created_at }}</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<div class="loader">
+							<div class="line-scale">
+								<div></div><div></div><div></div>
+								<div></div><div></div>
+							</div>
+							<div style="margin-top:15px">加载中...</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="ir-wrapper">
+				<ul class="ir-scroller">
+					<li v-for="item in list4" :data-id="item.id">
+						<a class="clear-fix" href="javascript:;">
+							<img :src="item.thumbnail">
+							<div class="li-body">
+								<h3>{{ item.title }}</h3>
+								<p>{{ item.created_at }}</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<div class="loader">
+							<div class="line-scale">
+								<div></div><div></div><div></div>
+								<div></div><div></div>
+							</div>
+							<div style="margin-top:15px">加载中...</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="ir-wrapper">
+				<ul class="ir-scroller">
+					<li v-for="item in list5" :data-id="item.id">
+						<a class="clear-fix" href="javascript:;">
+							<img :src="item.thumbnail">
+							<div class="li-body">
+								<h3>{{ item.title }}</h3>
+								<p>{{ item.created_at }}</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<div class="loader">
+							<div class="line-scale">
+								<div></div><div></div><div></div>
+								<div></div><div></div>
+							</div>
+							<div style="margin-top:15px">加载中...</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="ir-wrapper">
+				<ul class="ir-scroller">
+					<li v-for="item in list6" :data-id="item.id">
+						<a class="clear-fix" href="javascript:;">
 							<img :src="item.thumbnail">
 							<div class="li-body">
 								<h3>{{ item.title }}</h3>
