@@ -28,7 +28,7 @@ var vm = new Vue({
 			param.lastUpdate 上一次刷新的时间
 			*/
 			var index = param.index;
-			getData({ curTab: index, curPage: 0 }, function (data) {
+			getData({ curTab: index, curPage: 0, type: 'pullDown' }, function (data) {
 				if(parseInt(data.code) == 200) {
 					vm.setInitList(index, data.list);
 				  Vue.nextTick(function(){
@@ -51,7 +51,7 @@ var vm = new Vue({
 			*/
 			var index = param.index;
 			var page = param.page;
-			getData({ curTab: index, curPage: page }, function (data) {
+			getData({ curTab: index, curPage: page, type: 'pullUp' }, function (data) {
 				if(parseInt(data.code) == 200) {
 					vm.setMoreList(index, data.list);
 				  Vue.nextTick(function(){
@@ -65,7 +65,7 @@ var vm = new Vue({
 			});
 		},
 		initData: function(index, page) {
-			getData({ curTab: index, curPage: page }, function (data) {
+			getData({ curTab: index, curPage: page, type: 'init' }, function (data) {
 				if(parseInt(data.code) == 200){
 					//vm.list1 = data.list
 					vm.setInitList(index, data.list)
