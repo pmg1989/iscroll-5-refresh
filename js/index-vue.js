@@ -20,6 +20,10 @@ var vm = new Vue({
 			ir.upAction = this.pullUp; //上拉加载取数据函数
 			ir.slideAction = this.slide; //左右滑动的回调函数
 			this.slide(this.tab);
+			if(this.tab > 0) {
+				$("#ir-tabs-wrapper a").eq(this.tab).addClass('active').siblings().removeClass('active');
+				ir.bdScroll.goToPage(this.tab,0,0)
+			}
 		},
 		initData: function(index, page) {
 			getData({ tab: index, page: page, cid: this.categorys[index], type: 'init' }, function (data) {
